@@ -77,8 +77,8 @@ float TDSSensor::readTDS()
     float compensationCoefficient = 1.0 + 0.02 * (_temperature - 25.0);                                                                                                              // temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0));
     float compensationVolatge = averageVoltage / compensationCoefficient;                                                                                                            // temperature compensation
     tdsValue = (133.42 * compensationVolatge * compensationVolatge * compensationVolatge - 255.86 * compensationVolatge * compensationVolatge + 857.39 * compensationVolatge) * 0.5; // convert voltage value to tds value
-    return tdsValue;
   }
+  return tdsValue;
 }
 int TDSSensor::getTemperature()
 {

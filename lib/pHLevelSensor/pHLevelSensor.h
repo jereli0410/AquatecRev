@@ -10,10 +10,10 @@ class pHLevelSensor
         pHLevelSensor(int pin);
         ~pHLevelSensor();
         void begin();
-        float readpH();
-        int getMedianNum(int bArray[], int iFilterLen);
+        float readpHLevel();
     private:
         int _inputPin;
+        int _pHLevel;
 }; 
 
 #endif //pHLevelSensor_h

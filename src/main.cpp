@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include "AQUATECControl.h"
-#include <Relay.h>
 
 // Test Functions Declarations:
 void testWithBlink();
@@ -13,9 +12,17 @@ void testDigitalIRSensor(DigitalIRSensor IRSensor);
 
 void testTDSSensor(TDSSensor tdsSensor);
 
+void testPHSensor(pHLevelSensor phSensor);
+
 // Sensor Pins:
 #define PROXIMITY_SENSOR_PIN 14
 #define TDS_SENSOR_PIN 15
+#define PH_SENSOR_PIN 16
+#define TEMPERATURE_SENSOR_PIN 99 // for temperature sensor futre implementation
+
+#define LCD_COLUMNS 16
+#define LCD_ROWS 2
+#define DISPLAY_LCD_I2C_ADDRESS 0x27
 
 // Actuator Pins:
 #define SOURCE_VALVE_PIN 4
@@ -26,9 +33,9 @@ void testTDSSensor(TDSSensor tdsSensor);
 // Intialize Aquatec
 AquatecControl aquateccontrol;
 
-// Initialize Sensors
+// Initialize Sensors //intialization happens at setup()
 
-// Initialize Actuators
+// Initialize Actuators //intialization happens at setup()
 
 void setup()
 {
@@ -40,6 +47,10 @@ void setup()
   aquateccontrol.proximitySensor.begin();
   aquateccontrol.tdsSensor = TDSSensor(TDS_SENSOR_PIN);
   aquateccontrol.tdsSensor.begin();
+  aquateccontrol.pHSensor = pHLevelSensor(PH_SENSOR_PIN);
+  aquateccontrol.pHSensor.begin();
+  aquateccontrol.displayLCD = DisplayLCD(DISPLAY_LCD_I2C_ADDRESS, LCD_COLUMNS, LCD_ROWS);
+  aquateccontrol.displayLCD.begin();
 
   // setup Actuators
   aquateccontrol.sourceValve = Relay(LED_BUILTIN, false);
@@ -49,6 +60,9 @@ void setup()
   aquateccontrol.dispenserValve = Relay(DISPENSER_VALVE_PIN, false);
   aquateccontrol.dispenserValve.begin();
 
+  // initialize AQUATEC
+  aquateccontrol.init();
+
   Serial.begin(9600);
 }
 
@@ -56,8 +70,7 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   // Run Aquatec
-  // Serial.println("Hello World");
-  testTDSSensor(aquateccontrol.tdsSensor);
+  aquateccontrol.operate();
 }
 
 // Test Functions Definitions:
@@ -108,6 +121,14 @@ void testDigitalIRSensor(DigitalIRSensor IRSensor)
 
 void testTDSSensor(TDSSensor tdsSensor)
 {
+  Serial.print("TDS: ");
   Serial.println(tdsSensor.readTDS());
+  delay(1000);
+}
+
+void testPHSensor(pHLevelSensor phSensor)
+{
+  Serial.print("pH: ");
+  Serial.println(phSensor.readpHLevel());
   delay(1000);
 }
