@@ -14,6 +14,8 @@ void testTDSSensor(TDSSensor tdsSensor);
 
 void testPHSensor(pHLevelSensor phSensor);
 
+void testDisplayLCD(DisplayLCD displayLCD);
+
 // Sensor Pins:
 #define PROXIMITY_SENSOR_PIN 14
 #define TDS_SENSOR_PIN 15
@@ -131,5 +133,30 @@ void testPHSensor(pHLevelSensor phSensor)
 {
   Serial.print("pH: ");
   Serial.println(phSensor.readpHLevel());
+  delay(1000);
+}
+
+void testDisplayLCD(DisplayLCD displayLCD)
+{
+  Serial.println("Printing AQUATEC");
+  displayLCD.printAQUATEC();
+  delay(1000);
+  Serial.println("Printing pH");
+  displayLCD.printpH(7.5, 0);
+  delay(1000);
+  Serial.println("Printing TDS");
+  displayLCD.printTDS(1000, 1);
+  delay(1000);
+  Serial.println("Printing Temperature");
+  displayLCD.printTemperature(25, 1);
+  delay(1000);
+  Serial.println("Printing Warning Not Potable");
+  displayLCD.printWarningNotPotable();
+  delay(1000);
+  Serial.println("Printing Resetting");
+  displayLCD.printResetting();
+  delay(1000);
+  Serial.println("Clearing");
+  displayLCD.clear();
   delay(1000);
 }
