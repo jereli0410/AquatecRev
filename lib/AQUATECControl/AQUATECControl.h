@@ -33,6 +33,7 @@ class AquatecControl{
 
         void init();
 
+        void update();
         void operate();
 
     private:
