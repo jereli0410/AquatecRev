@@ -22,8 +22,8 @@ void testTDSSensorVoltage(TDSSensor tdsSensor);
 
 // Sensor Pins:
 #define PROXIMITY_SENSOR_PIN 7
-#define TDS_SENSOR_PIN 15
-#define PH_SENSOR_PIN 14
+#define TDS_SENSOR_PIN 14
+#define PH_SENSOR_PIN 15
 #define TEMPERATURE_SENSOR_PIN 99 // for temperature sensor futre implementation
 
 #define LCD_COLUMNS 16
@@ -78,8 +78,8 @@ void loop()
   // Run Aquatec
   //aquateccontrol.update();
   //aquateccontrol.operate();
-  testpHSensorVoltage(aquateccontrol.pHSensor);
-  testPHSensor(aquateccontrol.pHSensor);
+  testTDSSensorVoltage(aquateccontrol.tdsSensor);
+  testTDSSensor(aquateccontrol.tdsSensor);
 }
 
 // Test Functions Definitions:

@@ -1,8 +1,8 @@
 #ifndef TDSSensor_h
 #define TDSSensor_h
 
-
 #include <Arduino.h>
+#include "GravityTDS.h"
 
 class TDSSensor{
     public:
@@ -13,15 +13,12 @@ class TDSSensor{
 
         float readVoltage();
         float readTDS();
-        int getMedianNum(int bArray[], int iFilterLen);
-;
-        int getTemperature();
-        void setTemperature(int temperature);
 
     private:
+        GravityTDS _gravityTDS;
         int _inputPin;
-        int _currentTemperature;
-        int _temperature;
+        float _currentTemperature;
         int _voltage;
+        float _tdsValue;
 };
 #endif //TDSSensor_h  

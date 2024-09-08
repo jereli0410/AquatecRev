@@ -1,7 +1,7 @@
 #include "pHLevelSensor.h"
 
 #define VREF 5.0 // analog reference voltage(Volt) of the ADC
-#define CALIBRATION_CONSTANT 0.0
+#define CALIBRATION_CONSTANT 22.93
 
 pHLevelSensor::pHLevelSensor()
 {
@@ -28,6 +28,8 @@ float pHLevelSensor::readVoltage()
 }
 
 // Examples Calculation
+
+
 float pHLevelSensor::readpHLevel()
 {
     float calibration_value = CALIBRATION_CONSTANT;
@@ -36,7 +38,7 @@ float pHLevelSensor::readpHLevel()
 
     for (int i = 0; i < 10; i++)
     {
-        buffer_arr[i] = analogRead(A0);
+        buffer_arr[i] = analogRead(_inputPin);
         delay(30);
     }
 
@@ -55,30 +57,31 @@ float pHLevelSensor::readpHLevel()
 
     for (int i = 0; i < 10; i++)
     {
-        Serial.print("Unsorted:  ");
-        Serial.println(buffer_arr[i]);
+        //Serial.print("Unsorted:  ");
+        //Serial.println(buffer_arr[i]);
     }
 
     avgval = 0;
     for (int i = 2; i < 8; i++)
     {
         avgval += buffer_arr[i];
-        Serial.print("Sorted:  ");
-        Serial.println(+buffer_arr[i]);
+        //Serial.print("Sorted:  ");
+        //Serial.println(+buffer_arr[i]);
     }
-    Serial.print("Avgval:  ");
-    Serial.println(avgval);
+    //Serial.print("Avgval:  ");
+    //Serial.println(avgval);
     float volt = (float)avgval * 5.0 / 1024 / 6;
-    Serial.print("VoltStep: ");
-    Serial.println(volt);
+    //Serial.print("VoltStep: ");
+    //Serial.println(volt);
     float ph_act = -5.70 * volt + calibration_value;
-    Serial.print("pH before return: ");
-    Serial.println(ph_act);
+    //Serial.print("pH before return: ");
+    //Serial.println(ph_act);
 
     return ph_act;
 }
 
-/* My Calculation
+/*
+ //My Calculation
 float pHLevelSensor::readpHLevel()
 {
     int samples = 10;
