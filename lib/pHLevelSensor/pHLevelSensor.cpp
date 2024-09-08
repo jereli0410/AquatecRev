@@ -30,8 +30,7 @@ float pHLevelSensor::readVoltage()
 // Examples Calculation
 float pHLevelSensor::readpHLevel()
 {
-    float calibration_value = 21.34;
-    int phval = 0;
+    float calibration_value = CALIBRATION_CONSTANT;
     unsigned long int avgval;
     int buffer_arr[10], temp;
 
@@ -60,9 +59,10 @@ float pHLevelSensor::readpHLevel()
         Serial.println(buffer_arr[i]);
     }
 
+    avgval = 0;
     for (int i = 2; i < 8; i++)
     {
-        avgval += (unsigned long)buffer_arr[i];
+        avgval += buffer_arr[i];
         Serial.print("Sorted:  ");
         Serial.println(+buffer_arr[i]);
     }
@@ -72,6 +72,8 @@ float pHLevelSensor::readpHLevel()
     Serial.print("VoltStep: ");
     Serial.println(volt);
     float ph_act = -5.70 * volt + calibration_value;
+    Serial.print("pH before return: ");
+    Serial.println(ph_act);
 
     return ph_act;
 }
