@@ -18,6 +18,8 @@ void testDisplayLCD(DisplayLCD displayLCD);
 
 void testpHSensorVoltage(pHLevelSensor phSensor);
 
+void testTDSSensorVoltage(TDSSensor tdsSensor);
+
 // Sensor Pins:
 #define PROXIMITY_SENSOR_PIN 7
 #define TDS_SENSOR_PIN 15
@@ -76,7 +78,8 @@ void loop()
   // Run Aquatec
   //aquateccontrol.update();
   //aquateccontrol.operate();
-  testDigitalIRSensor(aquateccontrol.proximitySensor);
+  testpHSensorVoltage(aquateccontrol.pHSensor);
+  testPHSensor(aquateccontrol.pHSensor);
 }
 
 // Test Functions Definitions:
@@ -167,5 +170,11 @@ void testDisplayLCD(DisplayLCD displayLCD)
 void testpHSensorVoltage(pHLevelSensor pHsensor){
   Serial.print("pH sensor voltage: ");
   Serial.println(pHsensor.readVoltage());
+  delay(1000);
+}
+
+void testTDSSensorVoltage(TDSSensor TDSsensor){
+  Serial.print("TDS sensor voltage: ");
+  Serial.println(TDSsensor.readVoltage());
   delay(1000);
 }

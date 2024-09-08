@@ -27,6 +27,56 @@ float pHLevelSensor::readVoltage()
     return _voltage;
 }
 
+// Examples Calculation
+float pHLevelSensor::readpHLevel()
+{
+    float calibration_value = 21.34;
+    int phval = 0;
+    unsigned long int avgval;
+    int buffer_arr[10], temp;
+
+    for (int i = 0; i < 10; i++)
+    {
+        buffer_arr[i] = analogRead(A0);
+        delay(30);
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = i + 1; j < 10; j++)
+        {
+            if (buffer_arr[i] > buffer_arr[j])
+            {
+                temp = buffer_arr[i];
+                buffer_arr[i] = buffer_arr[j];
+                buffer_arr[j] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        Serial.print("Unsorted:  ");
+        Serial.println(buffer_arr[i]);
+    }
+
+    for (int i = 2; i < 8; i++)
+    {
+        avgval += (unsigned long)buffer_arr[i];
+        Serial.print("Sorted:  ");
+        Serial.println(+buffer_arr[i]);
+    }
+    Serial.print("Avgval:  ");
+    Serial.println(avgval);
+    float volt = (float)avgval * 5.0 / 1024 / 6;
+    Serial.print("VoltStep: ");
+    Serial.println(volt);
+    float ph_act = -5.70 * volt + calibration_value;
+
+    return ph_act;
+}
+
+/* My Calculation
 float pHLevelSensor::readpHLevel()
 {
     int samples = 10;
@@ -48,3 +98,4 @@ float pHLevelSensor::readpHLevel()
 
     return averagepH = averagepH / samples * (14.0 / 1023.0); // convert the voltage to pH
 }
+*/

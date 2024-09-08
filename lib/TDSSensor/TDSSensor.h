@@ -10,6 +10,8 @@ class TDSSensor{
         TDSSensor(int pin);
         ~TDSSensor();
         void begin();
+
+        float readVoltage();
         float readTDS();
         int getMedianNum(int bArray[], int iFilterLen);
 ;
@@ -20,5 +22,6 @@ class TDSSensor{
         int _inputPin;
         int _currentTemperature;
         int _temperature;
+        int _voltage;
 };
 #endif //TDSSensor_h  

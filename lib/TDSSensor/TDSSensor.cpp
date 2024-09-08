@@ -21,6 +21,11 @@ void TDSSensor::begin()
   pinMode(_inputPin, INPUT);
 }
 
+float TDSSensor::readVoltage(){
+  _voltage = analogRead(_inputPin) * VREF / 1023.0;
+  return _voltage;
+}
+
 // median filtering algorithm
 int TDSSensor::getMedianNum(int bArray[], int iFilterLen)
 {
@@ -74,7 +79,7 @@ float TDSSensor::readTDS()
     for (copyIndex = 0; copyIndex < SCOUNT; copyIndex++)
       analogBufferTemp[copyIndex] = analogBuffer[copyIndex];
     averageVoltage = getMedianNum(analogBufferTemp, SCOUNT) * (float)VREF / 1024.0;                                                                                                  // read the analog value more stable by the median filtering algorithm, and convert to voltage value
-    float compensationCoefficient = 1.0 + 0.02 * (_temperature - 25.0);                                                                                                              // temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0));
+    float compensationCoefficient = 1.0 + 0.02 * ((float)_temperature - 25.0);                                                                                                              // temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0));
     float compensationVolatge = averageVoltage / compensationCoefficient;                                                                                                            // temperature compensation
     tdsValue = (133.42 * compensationVolatge * compensationVolatge * compensationVolatge - 255.86 * compensationVolatge * compensationVolatge + 857.39 * compensationVolatge) * 0.5; // convert voltage value to tds value
   }
