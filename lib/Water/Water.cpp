@@ -22,7 +22,7 @@ Water::~Water(){}
 
 bool Water::isPotable(){
     bool ispHLevelOK = _pHLevel > _pHThreshold-1.5&&_pHLevel < _pHThreshold+1.5;
-    bool isTotalDissolvedSolidsOK = _totaldissolvedsolids > _totaldissolvedsolidsThreshold+175&&_totaldissolvedsolids < _totaldissolvedsolidsThreshold-175;
+    bool isTotalDissolvedSolidsOK = _totaldissolvedsolids > _totaldissolvedsolidsThreshold-175&&_totaldissolvedsolids < _totaldissolvedsolidsThreshold+175;
 
     return ispHLevelOK && isTotalDissolvedSolidsOK;
 }
