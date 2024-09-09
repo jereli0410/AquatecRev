@@ -85,6 +85,7 @@ void loop()
   if (aquateccontrol.proximitySensor.readProximity() == 1)
   {
     aquateccontrol.dispenserValve.turnOn();
+    Serial.println("Dispensing...");
   }
   else
   {

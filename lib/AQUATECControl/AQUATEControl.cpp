@@ -46,6 +46,7 @@ void AquatecControl::operate()
             displayLCD.printDispensingWater();
             Serial.println("Dispensing water...");
             dispenserValve.turnOn();
+            delay(1000);
         }
         else
         {
