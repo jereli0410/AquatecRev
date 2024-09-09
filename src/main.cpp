@@ -84,9 +84,8 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   // Run Aquatec
- // aquateccontrol.update();
-  //aquateccontrol.operate();
-  testPHSensor(aquateccontrol.pHSensor);
+   aquateccontrol.update();
+  aquateccontrol.operate();
 }
 
 // Test Functions Definitions:
