@@ -72,8 +72,11 @@ void setup()
   Serial.begin(9600);
 
   aquateccontrol.displayLCD.printAQUATEC();
-  while(!aquateccontrol.water.isPotable())
-  {aquateccontrol.update();}
+  while (!aquateccontrol.water.isPotable())
+  {
+    aquateccontrol.update();
+    Serial.println("Water not potable. Waiting for water...");
+  }
   aquateccontrol.displayLCD.clear();
 }
 
@@ -171,13 +174,15 @@ void testDisplayLCD(DisplayLCD displayLCD)
   delay(1000);
 }
 
-void testpHSensorVoltage(pHLevelSensor pHsensor){
+void testpHSensorVoltage(pHLevelSensor pHsensor)
+{
   Serial.print("pH sensor voltage: ");
   Serial.println(pHsensor.readVoltage());
   delay(1000);
 }
 
-void testTDSSensorVoltage(TDSSensor TDSsensor){
+void testTDSSensorVoltage(TDSSensor TDSsensor)
+{
   Serial.print("TDS sensor voltage: ");
   Serial.println(TDSsensor.readVoltage());
   delay(1000);
