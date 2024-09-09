@@ -86,11 +86,13 @@ void loop()
   {
     aquateccontrol.dispenserValve.turnOn();
     Serial.println("Dispensing...");
+    delay(1000);
   }
   else
   {
     aquateccontrol.dispenserValve.turnOff();
     Serial.println("Not Dispensing...");
+    delay(1000);
   }
 }
 

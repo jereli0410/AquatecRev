@@ -15,5 +15,5 @@ void DigitalIRSensor::begin()
 
 byte DigitalIRSensor::readProximity()
 {
-    return digitalRead(_inputPin);
+    return !digitalRead(_inputPin); // actual sensor is inverted
 }
