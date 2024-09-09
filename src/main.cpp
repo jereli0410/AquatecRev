@@ -47,7 +47,7 @@ void setup()
 {
   // put your setup code here, to run once:
   // setup Aquatec
-  aquateccontrol.begin(7, 175); // pHThreshold, totaldissolvedsolidsThreshold
+  aquateccontrol.begin(7, 250); // pHThreshold, totaldissolvedsolidsThreshold
   // setup Sensors
   aquateccontrol.proximitySensor = DigitalIRSensor(PROXIMITY_SENSOR_PIN);
   aquateccontrol.proximitySensor.begin();
@@ -70,16 +70,19 @@ void setup()
   aquateccontrol.init();
 
   Serial.begin(9600);
+
+  aquateccontrol.displayLCD.printAQUATEC();
+  aquateccontrol.update();
+  delay(3000);
+  aquateccontrol.displayLCD.clear();
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
   // Run Aquatec
-  //aquateccontrol.update();
-  //aquateccontrol.operate();
-  testpHSensorVoltage(aquateccontrol.pHSensor);
-  testPHSensor(aquateccontrol.pHSensor);
+  aquateccontrol.update();
+  aquateccontrol.operate();
 }
 
 // Test Functions Definitions:

@@ -12,7 +12,7 @@ void DisplayLCD::begin()
 
 void DisplayLCD::printAQUATEC()
 { 
-    _lcd.setCursor(0, 0);
+    _lcd.setCursor(2, 0);
     _lcd.print("AQUATEC");
 }
 
@@ -34,7 +34,7 @@ void DisplayLCD::printWarningNotPotable()
 {
     _lcd.setCursor(1, 0);
     _lcd.print("!!!WARNING!!!");
-    _lcd.setCursor(1, 1);
+    _lcd.setCursor(2, 1);
     _lcd.print("NOT POTABLE");
 }
 
