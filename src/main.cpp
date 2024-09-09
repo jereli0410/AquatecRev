@@ -72,8 +72,8 @@ void setup()
   Serial.begin(9600);
 
   aquateccontrol.displayLCD.printAQUATEC();
-  aquateccontrol.update();
-  delay(3000);
+  while(!aquateccontrol.water.isPotable())
+  {aquateccontrol.update();}
   aquateccontrol.displayLCD.clear();
 }
 
