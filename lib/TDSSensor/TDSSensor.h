@@ -1,6 +1,7 @@
 #ifndef TDSSensor_h
 #define TDSSensor_h
 
+
 #include <Arduino.h>
 #include "GravityTDS.h"
 
@@ -13,12 +14,15 @@ class TDSSensor{
 
         float readVoltage();
         float readTDS();
+;
+        int getTemperature();
+        void setTemperature(int temperature);
 
     private:
-        GravityTDS _gravityTDS;
         int _inputPin;
-        float _currentTemperature;
+        int _temperature;
         int _voltage;
-        float _tdsValue;
+        int _tdsValue;
+        GravityTDS _gravityTDS; 
 };
 #endif //TDSSensor_h  

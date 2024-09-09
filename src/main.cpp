@@ -22,8 +22,8 @@ void testTDSSensorVoltage(TDSSensor tdsSensor);
 
 // Sensor Pins:
 #define PROXIMITY_SENSOR_PIN 7
-#define TDS_SENSOR_PIN 14
-#define PH_SENSOR_PIN 15
+#define TDS_SENSOR_PIN 15
+#define PH_SENSOR_PIN 14
 #define TEMPERATURE_SENSOR_PIN 99 // for temperature sensor futre implementation
 
 #define LCD_COLUMNS 16
@@ -47,7 +47,7 @@ void setup()
 {
   // put your setup code here, to run once:
   // setup Aquatec
-  aquateccontrol.begin(7, 175); // pHThreshold, totaldissolvedsolidsThreshold
+  aquateccontrol.begin(7, 250); // pHThreshold, totaldissolvedsolidsThreshold
   // setup Sensors
   aquateccontrol.proximitySensor = DigitalIRSensor(PROXIMITY_SENSOR_PIN);
   aquateccontrol.proximitySensor.begin();
@@ -70,16 +70,19 @@ void setup()
   aquateccontrol.init();
 
   Serial.begin(9600);
+
+  aquateccontrol.displayLCD.printAQUATEC();
+  aquateccontrol.update();
+  delay(3000);
+  aquateccontrol.displayLCD.clear();
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
   // Run Aquatec
-  //aquateccontrol.update();
-  //aquateccontrol.operate();
-  testTDSSensorVoltage(aquateccontrol.tdsSensor);
-  testTDSSensor(aquateccontrol.tdsSensor);
+  aquateccontrol.update();
+  aquateccontrol.operate();
 }
 
 // Test Functions Definitions:

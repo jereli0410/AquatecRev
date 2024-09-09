@@ -53,13 +53,14 @@ void AquatecControl::operate()
     }
     else
     {
-        Serial.println("Water not potable!");
+        Serial.println("Water not potable!");\
+        displayLCD.clear();
         displayLCD.printWarningNotPotable(); // Water not potable drain the water
         dispenserValve.turnOff();
         sourceValve.turnOff();
         drainValve.turnOn();
         Serial.println("Resetting reservoir...");
         delay(10000);
-        // TODO: How to detect if reservoir is full then reset.
+        // TODO How to detect if reservoir is full then reset.
     }
 }
