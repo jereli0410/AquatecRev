@@ -41,7 +41,13 @@ void DisplayLCD::printWarningNotPotable()
 void DisplayLCD::printResetting()
 {
     _lcd.setCursor(0,0);
-    _lcd.print("RESETTING..");
+    _lcd.print("RESETTING...");
+}
+
+void DisplayLCD::printWaitingForWater()
+{
+    _lcd.setCursor(0,0);
+    _lcd.print("CALIBRATING SENSORS...");
 }
 
 void DisplayLCD::clear()

@@ -21,6 +21,7 @@ public:
     void printpH(float pHValue, int row);
     void printTemperature(float temperature, int row);
     void printWarningNotPotable();
+    void printWaitingForWater();
     void printResetting();
 
     void clear();

@@ -77,6 +77,8 @@ void setup()
   {
     aquateccontrol.update();
     Serial.println("Water not potable. Waiting for water...");
+    delay(1000);
+    aquateccontrol.displayLCD.printWaitingForWater();
   }
   aquateccontrol.displayLCD.clear();
 }
@@ -85,7 +87,7 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   // Run Aquatec
-   aquateccontrol.update();
+  aquateccontrol.update();
   aquateccontrol.operate();
 }
 
