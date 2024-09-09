@@ -90,7 +90,7 @@ void loop()
   else
   {
     aquateccontrol.dispenserValve.turnOff();
-    serial.println("Not Dispensing...");
+    Serial.println("Not Dispensing...");
   }
 }
 
