@@ -60,7 +60,7 @@ void AquatecControl::operate()
         sourceValve.turnOff();
         drainValve.turnOn();
         Serial.println("Resetting reservoir...");
-        delay(10000);
+        //delay(10000);
         // TODO How to detect if reservoir is full then reset.
     }
 }
