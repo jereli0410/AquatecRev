@@ -73,7 +73,7 @@ void setup()
 
   Serial.begin(9600);
 
-  //calibrateSensors();
+  // calibrateSensors();
 }
 
 void loop()
@@ -82,7 +82,14 @@ void loop()
   // Run Aquatec
   // aquateccontrol.update();
   // aquateccontrol.operate();
-  testDigitalIRSensor(aquateccontrol.proximitySensor);
+  if (aquateccontrol.proximitySensor.readProximity() == 1)
+  {
+    aquateccontrol.dispenserValve.turnOn();
+  }
+  else
+  {
+    aquateccontrol.dispenserValve.turnOff();
+  }
 }
 
 // Test Functions Definitions:

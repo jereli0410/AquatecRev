@@ -37,7 +37,7 @@ void AquatecControl::update()
 }
 
 void AquatecControl::operate()
-{
+{   
     if (water.isPotable())
     {
         Serial.println("Water OK!");
