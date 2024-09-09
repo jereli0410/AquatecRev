@@ -1,7 +1,7 @@
 #include "pHLevelSensor.h"
 
 #define VREF 5.0 // analog reference voltage(Volt) of the ADC
-#define CALIBRATION_CONSTANT 0.0
+#define CALIBRATION_CONSTANT -2.5
 
 pHLevelSensor::pHLevelSensor()
 {
