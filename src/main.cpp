@@ -20,6 +20,8 @@ void testpHSensorVoltage(pHLevelSensor phSensor);
 
 void testTDSSensorVoltage(TDSSensor tdsSensor);
 
+void calibrateSensors();
+
 // Sensor Pins:
 #define PROXIMITY_SENSOR_PIN 7
 #define TDS_SENSOR_PIN A0
@@ -71,24 +73,16 @@ void setup()
 
   Serial.begin(9600);
 
-  aquateccontrol.displayLCD.printAQUATEC();
-  aquateccontrol.update();
-  while (!aquateccontrol.water.isPotable())
-  {
-    aquateccontrol.update();
-    Serial.println("Water not potable. Waiting for water...");
-    delay(1000);
-    aquateccontrol.displayLCD.printWaitingForWater();
-  }
-  aquateccontrol.displayLCD.clear();
+  //calibrateSensors();
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
   // Run Aquatec
-  aquateccontrol.update();
-  aquateccontrol.operate();
+  // aquateccontrol.update();
+  // aquateccontrol.operate();
+  testDigitalIRSensor(aquateccontrol.proximitySensor);
 }
 
 // Test Functions Definitions:
@@ -188,4 +182,18 @@ void testTDSSensorVoltage(TDSSensor TDSsensor)
   Serial.print("TDS sensor voltage: ");
   Serial.println(TDSsensor.readVoltage());
   delay(1000);
+}
+
+void calibrateSensors()
+{
+  aquateccontrol.displayLCD.printAQUATEC();
+  aquateccontrol.update();
+  while (!aquateccontrol.water.isPotable())
+  {
+    aquateccontrol.update();
+    Serial.println("Water not potable. Waiting for water...");
+    delay(1000);
+    aquateccontrol.displayLCD.printWaitingForWater();
+  }
+  aquateccontrol.displayLCD.clear();
 }
