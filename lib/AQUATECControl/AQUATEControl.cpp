@@ -42,7 +42,8 @@ void AquatecControl::operate()
     {
         Serial.println("Water OK!");
         if (proximitySensor.readProximity()) // Allow dispenser to operate if water is potable
-        {
+        {   
+            displayLCD.printDispensingWater();
             Serial.println("Dispensing water...");
             dispenserValve.turnOn();
         }

@@ -22,6 +22,7 @@ public:
     void printTemperature(float temperature, int row);
     void printWarningNotPotable();
     void printWaitingForWater();
+    void printDispensingWater();
     void printResetting();
 
     void clear();

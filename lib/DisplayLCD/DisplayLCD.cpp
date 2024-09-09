@@ -50,9 +50,12 @@ void DisplayLCD::printWaitingForWater()
     _lcd.print("CALIBRATING SENSORS...");
 }
 
+void DisplayLCD::printDispensingWater(){
+    _lcd.setCursor(0,0);
+    _lcd.print("DISPENSING WATER...");
+}
+
 void DisplayLCD::clear()
 {
     _lcd.clear();
 }
-
-
